@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package sf.solana.dex.trades.v1;
+
+message Output {
+  repeated TradeData data = 1;
+}
+
+message TradeData {
+  string block_date = 1;
+  int64 block_time = 2;
+  uint64 block_slot = 3;
+  string tx_id = 4;
+  string signer = 5;
+  string pool_address = 6;
+  string base_mint = 7;
+  string quote_mint = 8;
+  string base_vault = 9;
+  string quote_vault = 10;
+  double base_amount = 11;
+  double quote_amount = 12;
+  bool is_inner_instruction = 13;
+  uint32 instruction_index = 14;
+  string instruction_type = 15;
+  uint32 inner_instruxtion_index = 16;
+  string outer_program = 17;
+  string inner_program = 18;
+  uint64 txn_fee_lamports = 19;
+  int64 signer_lamports_change = 20;
+}

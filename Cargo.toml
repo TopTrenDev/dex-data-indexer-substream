@@ -1,0 +1,19 @@
+[package]
+name = "dex_data_parser"
+version = "0.0.1"
+edition = "2021"
+
+[lib]
+name = "substreams"
+crate-type = ["cdylib"]
+
+[dependencies]
+prost = "0.13.3"
+prost-types = "0.13.3"
+substreams = "0.6.0"
+substreams-solana = "0.14.1"
+
+[profile.release]
+lto = true
+opt-level = 's'
+strip = "debuginfo"

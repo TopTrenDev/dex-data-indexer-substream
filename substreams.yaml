@@ -1,0 +1,44 @@
+specVersion: v0.1.0
+package:
+  name: dex_data_parser
+  version: v0.1.0
+
+imports:
+  solana: https://spkg.io/streamingfast/solana-common-v0.3.3.spkg
+
+protobuf:
+  files:
+    - output.proto
+  importPaths:
+    - ./proto
+  excludePaths:
+    - sf/substreams/rpc
+    - sf/substreams/v1
+    - sf/substreams/sink
+    - sf/substreams/index
+    - sf/substreams/index/v1
+    - instructions.proto # sol.instructions.v1 from the v0.2.0 spkg
+    - transactions.proto # sol.transactions.v1 from the v0.2.0 spkg
+    - google
+
+binaries:
+  default:
+    type: wasm/rust-v1+wasm-bindgen-shims
+    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+  - name: map_filtered_transactions
+    use: solana:transactions_by_programid_and_account_without_votes
+    initialBlock: 354743121
+  
+  - name: map_my_data
+    kind: map
+    inputs:
+    - map: map_filtered_transactions
+    output:
+     type: proto:mydata.v1.MyData
+
+network: solana-mainnet-beta
+
+params:
+  map_filtered_transactions: program:ComputeBudget111111111111111111111111111111 || (program:TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA && account:3MQw72oGrizUDEcD9gZYMgqo1pc364y5GnnJHcGpvurK)
