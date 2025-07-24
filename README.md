@@ -22,10 +22,12 @@ substreams registry publish       # Publish your Substreams to substreams.dev
 ### `map_filtered_transactions`
 
 This module retrieves Solana transactions filtered by one or several Program IDs.
-You will only receive transactions containing the specified Program IDs).
+You will only receive transactions containing the specified Program IDs.
 
 **NOTE:** Transactions containing voting instructions will NOT be present.
 
-### `map_my_data`
+### Commands
 
-This module allows you to create transformations on the filtered transactions.
+```
+substreams run -e mainnet.sol.streamingfast.io:443 substreams.yaml map_block -s 355325435 -t +1 > trades.jsonl
+```

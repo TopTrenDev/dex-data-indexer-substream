@@ -1,6 +1,6 @@
 [package]
 name = "dex_data_parser"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
 
 [lib]
@@ -12,6 +12,10 @@ prost = "0.13.3"
 prost-types = "0.13.3"
 substreams = "0.6.0"
 substreams-solana = "0.14.1"
+bs58 = "0.5.0"
+borsh = { version = "1.5.7", features = ["derive"]}
+chrono = { version = "0.4", features = [ "std" ], default-features = false }
+
 
 [profile.release]
 lto = true
